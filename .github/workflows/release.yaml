@@ -1,0 +1,40 @@
+name: Release - sync to s3 and cdn invalidation
+
+on:
+  push:
+    branches:
+      - master
+      - ci
+env:
+  CI: "true"
+  AWS_REGION: "ap-southeast-1"
+
+jobs:
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install aws cli
+        id: install-aws-cli
+        uses: unfor19/install-aws-cli-action@master
+      - name: Config terraform
+        run: |
+          mkdir $HOME/terraform/  && \
+          curl  -v -k -L https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip -o  $HOME/terraform/terraform_0.12.26_linux_amd64.zip  && \
+          unzip  $HOME/terraform/terraform_0.12.26_linux_amd64.zip -d  $HOME/terraform/  && \
+          cp -fv $HOME/terraform/terraform /usr/local/bin/  && \
+          terraform --version
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secret.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync AWS S3 Bucket
+        run: |
+          chmod +x bin/*.sh
+          bin/tf-ssm-env-file.sh
+          bin/tf-init.sh
+          bin/s3-web-sync.sh
