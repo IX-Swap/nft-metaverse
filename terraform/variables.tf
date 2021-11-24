@@ -8,12 +8,12 @@ variable "AWS_APP_NAME" {
 
 variable "AWS_APP_DOMAIN" {
   description = "Application name"
-  default     = "app.diversi.fi"
+  default     = "nft.app.ixswap.io"
 }
 
 variable "AWS_APP_PARENT_ZONE" {
   description = "Application name"
-  default     = "app.diversi.fi"
+  default     = "ixswap.io"
 }
 
 variable "AWS_ACM_ARN" {
@@ -26,7 +26,7 @@ variable "ENVIRONMENT" {
 
 variable "AWS_ACCOUNT_ID" {
   description = "AWS Account ID"
-  default = "647945059156"
+  default = "234891136725"
 }
 
 variable "AWS_CND_ERR_RESPONSE" {
@@ -36,6 +36,6 @@ variable "AWS_CND_ERR_RESPONSE" {
     error_caching_min_ttl     = 10
     error_code                = 404
     response_code             = 200
-    response_page_path        = "/"
+    response_page_path        = "/images/"
   }]
 }

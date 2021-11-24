@@ -37,11 +37,11 @@ else
   _info 'Wait SYNC files with AWS S3 Bucket'
   bucket_name=$(terraform output s3_bucket_id) || _fail
   echo bucket_name=$bucket_name
-  aws s3 sync ../build/ s3://${bucket_name}/ --acl public-read --delete || _fail
+  aws s3 sync ../images/ s3://${bucket_name}/images/ --acl public-read --delete || _fail
   _info 'Activate S3 bucket versioning'
   aws s3api put-bucket-versioning --bucket ${bucket_name} --versioning-configuration Status=Enabled || _fail
   _info 'Set index.html main document file'
-  aws s3 website s3://${bucket_name}/ --index-document index.html --error-document 50x.html || _fail
+  aws s3 website s3://${bucket_name}/ --index-document index.html || _fail
   _info 'invalidate cloudfront cache invalidation'
   aws cloudfront create-invalidation --distribution-id $(terraform output cf_id) --paths "/*" >> /dev/null || _fail
 fi

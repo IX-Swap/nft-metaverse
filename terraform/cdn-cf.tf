@@ -3,8 +3,9 @@ module "cdn" {
   version                       = "0.45.1"
   name                          = "${var.AWS_APP_NAME}-${var.ENVIRONMENT}-s3-cdn"
   origin_bucket                 = "${var.AWS_APP_NAME}-${var.ENVIRONMENT}-s3"
+#  bucket_region                 = var.AWS_REGION
   override_origin_bucket_policy = true
-  aliases                       = ["${var.AWS_APP_DOMAIN}","www.${var.AWS_APP_DOMAIN}"]
+  aliases                       = ["${var.AWS_APP_DOMAIN}"]
   parent_zone_name              = var.AWS_APP_PARENT_ZONE
   dns_alias_enabled             = true
   acm_certificate_arn           = "${var.AWS_ACM_ARN}"
@@ -14,10 +15,10 @@ module "cdn" {
   logging_enabled               = true
   minimum_protocol_version      = "TLSv1"
   cors_allowed_headers          = ["*"]
-  cors_allowed_methods          = ["GET", "HEAD", "PUT"]
-  cors_allowed_origins          = ["${var.AWS_APP_DOMAIN}","*.diversi.fi"]
+  cors_allowed_methods          = ["GET", "HEAD"]
+  cors_allowed_origins          = ["${var.AWS_APP_DOMAIN}","*.ixswap.io"]
   cors_expose_headers           = ["ETag"]
-  custom_error_response         = var.AWS_CND_ERR_RESPONSE
+#  custom_error_response         = var.AWS_CND_ERR_RESPONSE
   tags = {
     Project     = var.AWS_APP_NAME
     Environment = var.ENVIRONMENT

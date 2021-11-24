@@ -19,9 +19,6 @@ done
 _info "Accessing terraform working directory"
 cd "$PROJECT_ROOT/terraform" || _fail
 
-_info "Manage terrafom env workspace"
-_tf_workspace  || _fail
-
 _info "Initialize terraform backend"
 cd backend || _fail
 terraform init || _fail
@@ -39,6 +36,7 @@ fi
 _info "Initialize terraform"
 cd .. || _fail
 terraform init || _fail
-_tf_workspace  || _fail
+_info "Set terraform workspace"
+_tf_workspace || _fail
 
 
