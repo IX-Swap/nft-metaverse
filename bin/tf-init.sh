@@ -20,24 +20,25 @@ _info "Accessing terraform working directory"
 cd "$PROJECT_ROOT/terraform" || _fail
 
 _info "Manage terrafom env workspace"
-_tf_workspace  || fail
+_tf_workspace  || _fail
 
 _info "Initialize terraform backend"
 cd backend || _fail
-_tf_workspace  || fail
 terraform init || _fail
+_tf_workspace  || _fail
 
 _info "Provision backend infrastructure"
+echo "CI=$CI"
 if [ -z "$CI" ]; then
-  terraform apply -auto-approve || _fail
+  if [ $(terraform workspace show) == "default" ]; then echo " Workspace default, check workspace creation" && _fail; fi
+  terraform apply  -auto-approve || _fail
 else
-  echo "Skipping on a CI env..."
+  echo "Skipping on a CI env and cretate backend.tf file..."
 fi
 
 _info "Initialize terraform"
 cd .. || _fail
-_info "Manage terrafom env workspace"
-_tf_workspace  || fail
 terraform init || _fail
+_tf_workspace  || _fail
 
 

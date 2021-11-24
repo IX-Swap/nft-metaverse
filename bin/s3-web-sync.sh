@@ -32,7 +32,7 @@ if [ -z "${ENVIRONMENT}" ] | [ -z "${AWS_APP_NAME}" ]; then
 else
   cd ./terraform
   _info "Manage terrafom env workspace"
-  _tf_workspace  || fail
+  _tf_workspace  || _fail
   terraform output
   _info 'Wait SYNC files with AWS S3 Bucket'
   bucket_name=$(terraform output s3_bucket_id) || _fail

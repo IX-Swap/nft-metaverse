@@ -26,7 +26,7 @@ _info "Accessing terraform working directory"
 cd "$PROJECT_ROOT/terraform" || _fail
 
 _info "Manage terrafom env workspace"
-_tf_workspace  || fail
+_tf_workspace  || _fail
 
 _info "Provision infrastructure"
 if [[ $1 == "plan" ]]; then

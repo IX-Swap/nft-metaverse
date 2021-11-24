@@ -60,7 +60,7 @@ function _yes_no_prompt() {
 
 
 function _tf_workspace() {
-  if [[ -z "$ENVIRONMENT" || ENVIRONMENT == "" ]]; then
+  if [[ -z "$ENVIRONMENT" || "$ENVIRONMENT" == "" ]]; then
     _info "Exporting TF_VAR_*"
     declare -a ENV_VARS=( "ENVIRONMENT" )
     for _var in ${ENV_VARS[@]}; do
@@ -72,7 +72,6 @@ function _tf_workspace() {
   if [ $? != 0 ]; then
     echo "Run tf command: terraform workspace new $ENVIRONMENT"
     terraform workspace new $ENVIRONMENT
-    sleet 3
   fi
   terraform workspace select $ENVIRONMENT
 }
