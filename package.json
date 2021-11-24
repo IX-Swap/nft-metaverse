@@ -1,0 +1,38 @@
+{
+  "name": "ixswap_nft",
+  "version": "1.0.0",
+  "description": "Contracts for the IXSwap NFT",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/truffle build",
+    "test": "run-s tab:start:ganache tab:test:truffle",
+    "test:truffle": "node node_modules/.bin/truffle test",
+    "start:ganache": "node node_modules/.bin/ganache-cli -m 'provide return net imitate object brief dog glad spawn garage budget just'",
+    "tab:start:ganache": "ttab npm run start:ganache",
+    "tab:test:truffle": "ttab npm run test:truffle",
+    "deployStage": "node node_modules/.bin/truffle migrate --network stage",
+    "deployProd": "node node_modules/.bin/truffle migrate --network prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:IX-Swap/nft-metaverse.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.5.1",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-bn": "^0.3.0",
+    "ethereum-waffle": "^3.4.0",
+    "ganache-cli": "^6.12.2",
+    "npm-run-all": "^4.1.5",
+    "truffle": "^5.4.14",
+    "ttab": "^0.7.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.3",
+    "ethers": "^5.5.1",
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
+}
