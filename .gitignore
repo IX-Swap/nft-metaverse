@@ -1,0 +1,7 @@
+.env*
+.idea
+.terraform
+*.tfstate*
+terraform/containers.json
+## generated on tf init on specific env, does not support multi env
+#terraform/backend.tf
