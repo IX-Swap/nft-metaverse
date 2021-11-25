@@ -36,6 +36,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Sync AWS S3 Bucket
         run: |
+          export CI=$CI AWS_REGION=${{ env.AWS_REGION }}  AWS_APP_NAME=${{ env.AWS_APP_NAME }} ENVIRONMENT=${{ env.ENVIRONMENT }}
           chmod +x bin/*.sh
           bin/tf-ssm-env-file.sh
           bin/tf-init.sh

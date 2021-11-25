@@ -12,5 +12,5 @@ if [ $CI == true ] && [ ! -z "$AWS_APP_NAME" ] && [ ! -z $ENVIRONMENT ] && [ ! -
   _info "Get AWS parameter store $AWS_APP_NAME-$ENVIRONMENT and create .env file"
   aws ssm get-parameter --name "$AWS_APP_NAME-$ENVIRONMENT" --with-decryption | jq -r ".Parameter.Value" > .env || _fail
 else
-  _info "Variables AWS_REGION AWS_APP_NAME ENVIRONMENT not defined..."
+  _info "Variables CI=$CI AWS_REGION=$AWS_REGION AWS_APP_NAME=$AWS_APP_NAME ENVIRONMENT=$ENVIRONMENT not defined..."
 fi
