@@ -1,0 +1,36 @@
+{
+  "name": "IX Swap NFTs - #111",
+  "description": "888 Spacemen have just arrived from the moon to take our IXS community with them on their return journey. IXS NFTs mark our first forays into creating AMM and Liquidity pools for NFT",
+  "image": "https://nft.app.ixswap.io/images/111.png",
+  "dna": "a29e091f0f1ddd0c5af7d11267357a4fa44f8a04",
+  "edition": 111,
+  "date": 1637674007349,
+  "creator": "IX Swap",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Stars"
+    },
+    {
+      "trait_type": "Planet",
+      "value": "Neptune"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "White"
+    },
+    {
+      "trait_type": "Helmet-glass",
+      "value": "Iridescent"
+    },
+    {
+      "trait_type": "Headwear",
+      "value": "Robe"
+    },
+    {
+      "trait_type": "Hand Accessories",
+      "value": "Cigar"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}

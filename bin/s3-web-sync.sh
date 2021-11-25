@@ -37,7 +37,9 @@ else
   _info 'Wait SYNC files with AWS S3 Bucket'
   bucket_name=$(terraform output s3_bucket_id) || _fail
   echo bucket_name=$bucket_name
-  aws s3 sync ../images/ s3://${bucket_name}/images/ --acl public-read --delete || _fail
+#   aws s3 sync ../images/ s3://${bucket_name}/images/ --acl public-read --delete || _fail
+  aws s3 sync ../images/ s3://${bucket_name}/images/ --acl public-read --content-type image/png --delete || _fail
+  aws s3 sync ../metadata/ s3://${bucket_name}/metadata/ --acl public-read --content-type application/json --delete || _fail
   _info 'Activate S3 bucket versioning'
   aws s3api put-bucket-versioning --bucket ${bucket_name} --versioning-configuration Status=Enabled || _fail
 #   _info 'Set index.html main document file'
